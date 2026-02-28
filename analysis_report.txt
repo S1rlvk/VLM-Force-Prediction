@@ -1,0 +1,68 @@
+VLM FORCE PREDICTION ANALYSIS REPORT
+==================================================
+
+OVERALL PERFORMANCE:
+--------------------
+total_predictions: 50
+mean_absolute_error: 5.366
+mean_percent_error: 41.038
+median_percent_error: 41.054
+within_2x_percent: 100.000
+rmse: 7.559
+pearson_correlation: 0.237
+pearson_p_value: 0.097
+spearman_correlation: 0.170
+spearman_p_value: 0.237
+
+PERFORMANCE BY CATEGORY:
+-------------------------
+   category  n_objects  mae  mae_std  mae_median  mean_percent_error  median_percent_error  within_2x_rate  avg_predicted_force  avg_ground_truth_force
+  deceptive         10 5.74     8.49        3.26               38.74                 42.15             1.0                 7.25                   11.92
+ deformable         10 2.81     1.10        3.01               38.51                 39.78             1.0                 5.50                    7.37
+    fragile         10 7.89     3.93        8.88               62.95                 76.30             1.0                 5.70                   12.67
+  household         15 5.80     5.51        3.97               36.08                 36.75             1.0                 8.67                   13.60
+tools_rigid          5 3.36     3.18        1.62               21.76                 19.33             1.0                11.00                   13.06
+
+DECEPTIVE OBJECTS ANALYSIS:
+------------------------------
+  deceptive  percent_error_count  percent_error_mean  percent_error_median  percent_error_std  absolute_error_mean  within_2x_mean
+looks_heavy                    5               30.60                 27.11              19.33                 2.61             1.0
+looks_light                    4               45.96                 44.06              26.18                 9.82             1.0
+looks_solid                    1               50.54                 50.54                NaN                 5.11             1.0
+
+SAFETY ANALYSIS (FRAGILE OBJECTS):
+-----------------------------------
+total_fragile_objects: 9
+safety_violations: 6
+violation_rate_percent: 66.66666666666666
+avg_safety_margin: -2.5555555555555554
+min_safety_margin: -9.0
+objects_with_violations: ['Raw chicken egg', 'Glass Christmas ornament ball', 'Thin-walled glass flower vase', 'Eggshell-thin ceramic bowl', 'Glass laboratory test tube', 'Inflated latex balloon']
+
+WORST 10 PREDICTIONS:
+--------------------
+                  object_name  category  pred_force  gt_force  percent_error                                                                                                                                                            reasoning
+       Inflated latex balloon   fragile        10.0      5.39          85.53                                                                                     The balloon is durable and inflated, requiring a moderate grip force to lift it.
+           Crystal wine glass   fragile         3.0     16.18          81.46                                                                                             The glass is fragile and light, requiring a gentle grip to avoid damage.
+Glass Christmas ornament ball   fragile         2.5     12.99          80.75                                                                                          The object is glass and fragile, requiring a gentle grip to avoid breaking.
+   Glass laboratory test tube   fragile         2.5     12.99          80.75                                                                           The glass test tube is very fragile and light, requiring a low grip force to avoid damage.
+ Lead counterweight (compact) deceptive         7.5     36.93          79.69 The object appears to be a compact lead counterweight, which is relatively heavy for its size and requires a moderate grip force to prevent slipping during lifting.
+      Incandescent light bulb   fragile         3.0     13.24          77.34                                                                                  The light bulb is fragile and lightweight, requiring a gentle grip to avoid damage.
+           Porcelain figurine   fragile         3.0     12.13          75.27                               The porcelain material requires a gentle grip to avoid damage, and the estimated mass suggests a moderate force is needed for lifting.
+   Eggshell-thin ceramic bowl   fragile         3.0     11.58          74.09                                                                                        The object is very fragile and thin, requiring a gentle grip to avoid damage.
+ Glass jam jar with metal lid household         7.5     22.31          66.38                                       The glass jar is not very fragile but requires a moderate grip force due to its weight and the need for precision in handling.
+         Wooden cutting board household        10.0     29.57          66.18                                                       The wooden cutting board is not fragile and has a moderate weight, requiring a grip force in the normal range.
+
+BEST 10 PREDICTIONS:
+-------------------
+                     object_name    category  pred_force  gt_force  percent_error                                                                                                                                                                  reasoning
+    Hollow aluminum pipe section   deceptive        10.0      9.71           2.99                 The object is made of aluminum, which has a moderate weight and normal fragility. A grip force in the range of 5-15N is typical for handling such objects.
+       Phillips head screwdriver tools_rigid        10.0      9.71           2.99                                                       The screwdriver is a standard tool with moderate weight and not fragile, requiring a grip force in the normal range.
+     Spiral-bound paper notebook   household        10.0     10.44           4.21                                                      The object is not fragile but requires a moderate grip force due to its weight and the need for precision in lifting.
+                 Raw chicken egg     fragile        10.0     10.48           4.58                                                                               The chicken is relatively heavy and soft, requiring a moderate grip force to lift it safely.
+  Plastic food storage container   household        10.0     11.21          10.79                         The container is made of plastic, which is relatively lightweight and not fragile. A grip force in the normal range should suffice for lifting it.
+            Rubber drink coaster   household         5.0      5.67          11.82                                                           The rubber coaster is relatively lightweight and not fragile, requiring a moderate grip force to lift it safely.
+Stainless steel kitchen scissors tools_rigid        10.0      8.68          15.21 The scissors are durable and made of stainless steel, which is heavier than plastic. A grip force in the middle range (10N) should be sufficient to pick up and lift them.
+    Tungsten alloy cube (1 inch)   deceptive        10.0     11.91          16.04  The object is a tungsten alloy cube, which is durable and has a moderate weight. The grip force required should be in the range of 5-15N, with a medium confidence level.
+                     Ripe banana  deformable         7.5      9.27          19.09                                                                         The banana is relatively light and not fragile, requiring a moderate grip force to lift it safely.
+          Aluminum ruler (30 cm) tools_rigid        10.0      8.38          19.33                                                       The aluminum ruler is relatively lightweight and not fragile, requiring a moderate grip force to lift it vertically.
